@@ -6,7 +6,7 @@ edition = "2018"
 description = "The Azure K4A API bindgen-ed to Rust."
 repository = "https://gitlab.com/amedeedabo/k4a-sys"
 license = "expat"
-gitlab = {repository = "amedeedabo/k4a-sys, branch = "master" }
+gitlab = {repository = "amedeedabo/k4a-sys", branch = "master" }
 
 [build-dependencies]
 bindgen = "0.52.0"
