@@ -3,9 +3,10 @@ name = "k4a-sys"
 version = "0.1.0"
 authors = ["Amédée d'Aboville <amedee.daboville@gmail.com>"]
 edition = "2018"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 description = "The Azure K4A API bindgen-ed to Rust."
+repository = "https://gitlab.com/amedeedabo/k4a-sys"
+license = "expat"
+gitlab = {repository = "amedeedabo/k4a-sys, branch = "master" }
 
 [build-dependencies]
 bindgen = "0.52.0"
