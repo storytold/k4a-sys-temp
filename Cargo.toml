@@ -1,6 +1,6 @@
 [package]
 name = "k4a-sys"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Amédée d'Aboville <amedee.daboville@gmail.com>"]
 edition = "2018"
 description = "The Azure K4A API bindgen-ed to Rust."
