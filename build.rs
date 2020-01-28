@@ -5,14 +5,14 @@ use std::env::consts;
 use std::path::PathBuf;
 
 fn main() {
-	println!("cargo:rustc-link-lib=k4a"); 
     println!("cargo:rerun-if-changed=wrapper.h");
     if cfg!(target_os = "linux") {
-        println!("cargo:rustc-link-search=./vendor/lib/linux");
+        println!("cargo:rustc-link-search=native=./vendor/lib/linux");
     }
     if cfg!(target_os = "windows") {
-        println!("cargo:rustc-link-search=./vendor/lib/windows/{}", consts::ARCH);
+        println!("cargo:rustc-link-search=native=./vendor/lib/windows/{}", consts::ARCH);
     }
+	println!("cargo:rustc-link-lib=static=k4a");
 
     let bindings = bindgen::Builder::default()
         .header("wrapper.h")
