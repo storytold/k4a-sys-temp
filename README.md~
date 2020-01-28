@@ -5,19 +5,10 @@ A bingden wrapper for the Azure Kinect Sensor SDK, which works on both Linux and
 Vendors the compiled SDK libs from version 1.3.
 
 At the moment I have compiled the sdk on both Linux and Windows
-and added the `include`s and dynamic libraries by hand to the
+and added the `include`s and dynamic libraries by hand to the 
 `vendor` folder. It might be possible to compile libk4a from source in the future,
 but it looks time consuming.
 
-Examples
-------
-I am re-implementing and adding the examples that match the SDK's example in rust. You can run them with eg:
-```
-cargo run --example enumerate
-```
-
-Future plans
-------
 This is temporarily missing the `depthengine` library, my plan is to statically compile this into the lib soon.
 
 Raise an issue if you'd like dynamic linking, but since `k4a` is such
