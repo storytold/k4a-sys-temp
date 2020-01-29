@@ -18,6 +18,8 @@ fn main() {
         .header("wrapper.h")
         .clang_arg(format!("-I./vendor/include/{}", consts::OS))
         .whitelist_function("k4a.*")
+        .whitelist_type("_?[kK]4[aA].*")
+        .whitelist_var("[kK]4[aA].*")
         .parse_callbacks(Box::new(bindgen::CargoCallbacks))
         .generate()
         .expect("Unable to generate bindings");
