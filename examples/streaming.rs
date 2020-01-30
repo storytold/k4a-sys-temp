@@ -117,5 +117,6 @@ fn main() {
         }
         // fflush(stdout);
     }
-}
+    k4a_device_close(device);
+    }
 }
