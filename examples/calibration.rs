@@ -81,6 +81,18 @@ impl Drop for Device {
 
     }
 }
+
+// pub struct DeviceCalibration (k4a_calibration_t);
+// impl Default for DeviceCalibration {
+//     fn default() -> Self {
+//         Self (k4a_calibration_t {
+//             color_camera_calibration,
+//             color_resolution,
+//             depth_camera_calibration
+
+//         })
+//     }
+// }
 pub struct DeviceConfiguration (k4a_device_configuration_t);
 impl Default for DeviceConfiguration {
     fn default() -> Self {
@@ -119,19 +131,25 @@ fn print_calibration() {
     println!("Found {} connected devices", num_devices);
     
     unsafe {
-            let mut config : DeviceConfiguration= DeviceConfiguration::init_disable_all();
-            println!("my config exists");
             for i in 0..num_devices {
                 let device = Device::open(i);
+                let mut calibration: k4a_calibration_t; 
+                let mut config : DeviceConfiguration= DeviceConfiguration::init_disable_all();
+                config.0.color_format = k4a_image_format_t_K4A_IMAGE_FORMAT_COLOR_MJPG;
+                config.0.color_resolution = k4a_color_resolution_t_K4A_COLOR_RESOLUTION_1080P;
+                config.0.depth_mode = k4a_depth_mode_t_K4A_DEPTH_MODE_NFOV_UNBINNED;
+                config.0.camera_fps = k4a_fps_t_K4A_FRAMES_PER_SECOND_30;
+                config.0.wired_sync_mode = k4a_wired_sync_mode_t_K4A_WIRED_SYNC_MODE_STANDALONE;
+                config.0.synchronized_images_only = true;
+
+                // k4a_sys::k4a_device_calibration(device.get_k4a_device(), )
 
             }
+            
     }
 
 }
 
 fn main () {
-    let device = Device::open(0).expect("Couldn't open device");
-    let serial_number = device.get_serial().expect("Couldn't get serial number");
-    // println!("Found device with serial number {}", serial_number);
     print_calibration();
 }
