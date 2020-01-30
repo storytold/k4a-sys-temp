@@ -11,10 +11,12 @@ but it looks time consuming.
 
 Examples
 ------
-I am re-implementing and adding the examples that match the SDK's example in rust. You can run them with eg:
+There are two examples that match the SDK's. You can run them with eg:
 ```
 cargo run --example enumerate
+cargo run --example streaming
 ```
+
 
 Future plans
 ------
@@ -22,7 +24,7 @@ This is temporarily missing the `depthengine` library, my plan is to statically 
 
 Raise an issue if you'd like dynamic linking, but since `k4a` is such
 a niche library, I think it's very convenient to have it statically compiled
-into the lib for now.
+for now.
 
 I'm also planning on writing a safe Rust wrapper library, `k4a-rs` to allow Rust-idiomatic (not raw pointers!)
 access to the libraries. It will probably live in this repo and we'll move `k4a-sys` to a sub-directory here, the
@@ -31,4 +33,3 @@ same way [`bzip2-rs` and `bzip2-sys`](https://github.com/alexcrichton/bzip2-rs) 
 I think in the near future we'll remove bindgen from the list of dependencies and only run it every library update,
 that is, by hand/script instead of in the build.rs. This is because bindgen has ~60 dependencies, and should always
 generate the same output file anyways. (It's possible to make the output cross platform).
-
