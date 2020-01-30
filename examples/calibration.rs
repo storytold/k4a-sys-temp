@@ -1,6 +1,7 @@
 #![allow(non_upper_case_globals)]
 extern crate k4a_sys;
 use std::ptr;
+use std::default;
 use std::ffi::{CString};
 use k4a_sys::*;
 
@@ -65,9 +66,72 @@ impl Device {
             serial_number.into_string().ok() 
         }
     }
+
+    pub fn installed_count() -> u32 {
+        unsafe {
+            k4a_device_get_installed_count()
+        }
+    }
 }
+impl Drop for Device {
+    fn drop (&mut self) {
+        unsafe {
+            k4a_device_close(self.k4a_device)
+        }
+
+    }
+}
+pub struct DeviceConfiguration (k4a_device_configuration_t);
+impl Default for DeviceConfiguration {
+    fn default() -> Self {
+     Self (k4a_sys::k4a_device_configuration_t {
+        color_format: k4a_image_format_t_K4A_IMAGE_FORMAT_COLOR_MJPG,
+        color_resolution: k4a_color_resolution_t_K4A_COLOR_RESOLUTION_720P,
+        depth_mode: k4a_depth_mode_t_K4A_DEPTH_MODE_WFOV_2X2BINNED,
+        camera_fps: 0,
+        synchronized_images_only: false,
+        depth_delay_off_color_usec: 0,
+        wired_sync_mode: 0,
+        subordinate_delay_off_master_usec: 0,
+        disable_streaming_indicator: false,
+        }
+     )
+    }
+}
+impl DeviceConfiguration {
+    pub fn init_disable_all() -> Self {
+        Self (k4a_sys::k4a_device_configuration_t {
+            color_format: k4a_image_format_t_K4A_IMAGE_FORMAT_COLOR_MJPG,
+            color_resolution: k4a_color_resolution_t_K4A_COLOR_RESOLUTION_OFF,
+            depth_mode: k4a_depth_mode_t_K4A_DEPTH_MODE_OFF,
+            camera_fps: k4a_fps_t_K4A_FRAMES_PER_SECOND_30,
+            synchronized_images_only: false,
+            depth_delay_off_color_usec: 0,
+            wired_sync_mode: k4a_wired_sync_mode_t_K4A_WIRED_SYNC_MODE_STANDALONE,
+            subordinate_delay_off_master_usec: 0,
+            disable_streaming_indicator: false,
+        })
+    }
+}
+
+fn print_calibration() {
+    let num_devices = Device::installed_count();
+    println!("Found {} connected devices", num_devices);
+    
+    unsafe {
+            let mut config : DeviceConfiguration= DeviceConfiguration::init_disable_all();
+            println!("my config exists");
+            for i in 0..num_devices {
+                let device = Device::open(i);
+
+            }
+    }
+
+}
+
 fn main () {
     let device = Device::open(0).expect("Couldn't open device");
     let serial_number = device.get_serial().expect("Couldn't get serial number");
-    println!("Found device with serial number {}", serial_number)
+    // println!("Found device with serial number {}", serial_number);
+    print_calibration();
 }
