@@ -1,12 +1,17 @@
 k4a-sys
 -------
-A bingden wrapper for the Azure Kinect Sensor SDK, which works on both Linux and Windows.
+A bingden wrapper for the Azure Kinect Sensor SDK, which should work on both Linux and Windows.
 
 Vendors the compiled SDK libs from version 1.3.
 
-At the moment I have compiled the sdk on both Linux and Windows
-and added the `include`s and dynamic libraries by hand to the
-`vendor` folder. It might be possible to compile libk4a from source in the future,
+On linux you need to install `libk4a1.3` to be able to use `libk4a.so` and `libdepthengine.so`.
+
+On windows you need to install the Sensor SDK to able to have the `libdepthengine.dll`.
+
+One future wish is to statically compile the SDK into this library, which would require modifying
+the SDK's build to output a static library we could link against.
+
+It also might be possible to compile libk4a from source in the future,
 but it looks time consuming.
 
 Examples
@@ -20,13 +25,7 @@ cargo run --example streaming
 
 Future plans
 ------
-This is temporarily missing the `depthengine` library, my plan is to statically compile this into the lib soon.
-
-Raise an issue if you'd like dynamic linking, but since `k4a` is such
-a niche library, I think it's very convenient to have it statically compiled
-for now.
-
-I'm also planning on writing a safe Rust wrapper library, `k4a-rs` to allow Rust-idiomatic (not raw pointers!)
+I've started also planning on writing a safe Rust wrapper library, `k4a-rs` to allow Rust-idiomatic (not raw pointers!)
 access to the libraries. It will probably live in this repo and we'll move `k4a-sys` to a sub-directory here, the
 same way [`bzip2-rs` and `bzip2-sys`](https://github.com/alexcrichton/bzip2-rs) work.
 
