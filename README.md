@@ -1,3 +1,15 @@
+# NOTE: This fork is a hack. Do not use.
+
+This has been forked from [Amedee's upstream k4a-sys](https://gitlab.com/amedeedabo/k4a-sys) to enable my work
+on Linux. If I were a better open source citizen, I'd reach out directly and help get a patched version uploaded
+to the crates registry, but I'm juggling too many things. (Sorry!)
+
+If `k4a-sys` gets pushed beyond version `0.2.0`, I'll deprecate and yank this crate.
+
+The only thing of note being done here is changing the `build.rs` to reference the correct target. Amedee's main
+branch already has a fix, but I'm uploading my fork since I have multiple projects that depend on it in its current
+state.
+
 k4a-sys
 -------
 A bingden wrapper for the Azure Kinect Sensor SDK, which should work on both Linux and Windows.

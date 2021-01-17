@@ -1,13 +1,13 @@
 [package]
-name = "k4a-sys"
+name = "k4a-sys-temp"
 version = "0.2.1"
-authors = ["Amédée d'Aboville <amedee.daboville@gmail.com>"]
+authors = ["fork of Amedee's code"]
 edition = "2018"
-description = "The Azure K4A API bindgen-ed to Rust."
-repository = "https://gitlab.com/amedeedabo/k4a-sys"
+description = "A patched version of k4a-sys that builds on Linux. This will be deprecated when k4a-sys is bumped."
+repository = "https://github.com/storytold/k4a-sys-temp"
 license = "MIT"
-gitlab = {repository = "amedeedabo/k4a-sys", branch = "master" }
-documentation = "https://docs.rs/k4a-sys"
+github = {repository = "storytold/k4a-sys-temp", branch = "master" }
+documentation = "https://docs.rs/k4a-sys-temp"
 keywords = ["kinect"]
 
 [build-dependencies]
