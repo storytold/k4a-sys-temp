@@ -20,7 +20,7 @@ fn main() {
         .whitelist_function("k4a.*")
         .whitelist_type("_?[kK]4[aA].*")
         .whitelist_var("[kK]4[aA].*")
-        .rustified_enum("[kK]4[aA].*")
+        //.rustified_enum("[kK]4[aA].*")
         .parse_callbacks(Box::new(bindgen::CargoCallbacks))
         .generate()
         .expect("Unable to generate bindings");
