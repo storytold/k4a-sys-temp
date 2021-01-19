@@ -1,6 +1,6 @@
 [package]
 name = "k4a-sys-temp"
-version = "0.2.1"
+version = "0.2.2"
 authors = ["fork of Amedee's code"]
 edition = "2018"
 description = "A patched version of k4a-sys that builds on Linux. This will be deprecated when k4a-sys is bumped."
